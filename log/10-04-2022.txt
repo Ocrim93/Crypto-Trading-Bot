@@ -1,0 +1,10 @@
+2022-04-10 18:52:37.660687   opened connection RUB : OK
+2022-04-10 18:52:38.550076   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-10 18:52:40.660913   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-10 18:52:43.259920   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-10 18:52:44.371154   opened connection UAH : OK
+2022-04-10 18:52:45.520090   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-10 20:56:55.908859   WebSocket ERROR  : ----------KO-------------- 
+2022-04-10 20:56:56.042821   closed connection None None : OK
+2022-04-10 20:56:59.121076   WebSocket ERROR  : ----------KO-------------- 
+2022-04-10 20:56:59.261296   closed connection None None : OK

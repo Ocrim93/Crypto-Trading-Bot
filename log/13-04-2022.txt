@@ -1,0 +1,11 @@
+2022-04-13 12:19:57.235017   WebSocket ERROR [Errno 60] Operation timed out : ----------KO-------------- 
+2022-04-13 12:19:57.259578   closed connection None None : OK
+2022-04-13 12:19:57.258912   closed connection None None : OK
+2022-04-13 12:20:58.777523   opened connection UAH  ETH : OK
+2022-04-13 12:20:58.777491   opened connection RUB  ETH : OK
+2022-04-13 16:38:26.603261   WebSocket ERROR [Errno 60] Operation timed out : ----------KO-------------- 
+2022-04-13 16:38:26.603256   WebSocket ERROR [Errno 60] Operation timed out : ----------KO-------------- 
+2022-04-13 16:38:26.625156   closed connection None None : OK
+2022-04-13 16:38:26.625331   closed connection None None : OK
+2022-04-13 16:39:27.928274   opened connection RUB  ETH : OK
+2022-04-13 16:39:27.972693   opened connection UAH  ETH : OK

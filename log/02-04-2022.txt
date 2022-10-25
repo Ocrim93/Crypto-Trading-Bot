@@ -1,0 +1,32 @@
+2022-04-02 18:43:28.452729   opened connection NGN : OK
+2022-04-02 18:43:29.847810   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:32.147466   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:34.309647   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:36.442264   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:39.239707   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:41.315459   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:43.712576   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:45.862991   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:48.934206   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:51.307279   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:53.645816   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:55.694357   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:57.742541   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:43:59.754021   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:00.066645   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:02.247036   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:04.295010   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:06.341782   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:12.663100   opened connection RUB : OK
+2022-04-02 18:44:12.950351   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:15.309679   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:17.607107   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:19.757321   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:21.702878   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:23.690760   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:25.085042   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 18:44:25.702162   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-02 21:18:54.801589   WebSocket ERROR  : ----------KO-------------- 
+2022-04-02 21:18:54.961514   closed connection None None : OK
+2022-04-02 21:18:56.162254   WebSocket ERROR  : ----------KO-------------- 
+2022-04-02 21:18:56.263687   closed connection None None : OK

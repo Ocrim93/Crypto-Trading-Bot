@@ -1,0 +1,11 @@
+2022-04-14 15:44:20.948928   WebSocket ERROR [Errno 60] Operation timed out : ----------KO-------------- 
+2022-04-14 15:44:20.971798   closed connection None None : OK
+2022-04-14 15:44:21.503708   WebSocket ERROR [Errno 60] Operation timed out : ----------KO-------------- 
+2022-04-14 15:44:21.509491   closed connection None None : OK
+2022-04-14 15:45:22.651386   opened connection RUB  ETH : OK
+2022-04-14 15:45:22.767252   opened connection UAH  ETH : OK
+2022-04-14 18:00:09.003780   WebSocket ERROR Connection to remote host was lost. : ----------KO-------------- 
+2022-04-14 18:00:09.007609   closed connection None None : OK
+2022-04-14 18:01:10.253664   opened connection UAH  ETH : OK
+2022-04-14 18:05:22.627323   closed connection 1008 Pong timeout : OK
+2022-04-14 18:06:23.978042   opened connection RUB  ETH : OK

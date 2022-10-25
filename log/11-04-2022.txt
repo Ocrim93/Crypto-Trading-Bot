@@ -1,0 +1,43 @@
+2022-04-11 12:05:30.140223   opened connection RUB : OK
+2022-04-11 12:05:30.802650   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 12:05:33.158167   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 12:05:37.145414   opened connection UAH : OK
+2022-04-11 12:05:37.663544   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 12:05:39.710024   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 12:05:41.678657   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 12:05:43.703597   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 12:05:45.854024   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 12:05:48.003678   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 12:05:49.920829   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 12:05:51.924943   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 12:05:53.949883   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 14:15:38.174230   WebSocket ERROR  : ----------KO-------------- 
+2022-04-11 14:15:38.347015   closed connection None None : OK
+2022-04-11 14:15:40.539537   WebSocket ERROR  : ----------KO-------------- 
+2022-04-11 14:15:40.689677   closed connection None None : OK
+2022-04-11 16:53:11.509788   opened connection UAH : OK
+2022-04-11 16:53:12.713434   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 16:53:14.898280   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 16:53:16.960237   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 16:53:17.202872   opened connection RUB : OK
+2022-04-11 16:53:19.184993   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 16:53:21.618639   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 16:53:23.821635   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 16:53:25.952623   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 16:53:27.995647   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 16:53:29.219901   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 16:53:30.093222   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 19:11:07.021295   WebSocket ERROR  : ----------KO-------------- 
+2022-04-11 19:11:09.711530   closed connection None None : OK
+2022-04-11 19:11:10.959549   WebSocket ERROR  : ----------KO-------------- 
+2022-04-11 19:11:11.090969   closed connection None None : OK
+2022-04-11 19:11:46.708905   opened connection RUB  ETH : OK
+2022-04-11 19:11:48.701712   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 19:11:50.996195   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 19:11:51.979172   opened connection UAH  ETH : OK
+2022-04-11 19:11:53.356246   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 19:11:53.356819   WebSocket ERROR float division by zero : ----------KO-------------- 
+2022-04-11 23:53:11.277479   WebSocket ERROR  : ----------KO-------------- 
+2022-04-11 23:53:11.497774   closed connection None None : OK
+2022-04-11 23:53:19.677092   WebSocket ERROR  : ----------KO-------------- 
+2022-04-11 23:53:19.878182   closed connection None None : OK
