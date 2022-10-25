@@ -44,6 +44,8 @@ There are implemented three different trading strategies (written in utilities_b
 
 Possibility to run the bot in a Test mode, with TEST = True.
 
+The remove_file_log.py script deletes every log file in the "log" folder, execpt for the log file of today.
+
 
 The Crypto Trading Bot uses:
 - Python 3.9.7
