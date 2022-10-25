@@ -1,5 +1,5 @@
 # Crypto-Trading-Bot
-Crypto Trading Botto buy/sell cryptocurrencies on Binance.com that can run 24/7. 
+Crypto Trading Bot buy/sell cryptocurrencies on Binance.com which can run 24/7. Easy to set up with a customisable config.py file.
 
 In detail, if the conditions based on the chosen trading strategies are met, the running bot would execute a MARKET BUY ORDER on Binance and a SELL LIMIT ORDER would be filled regarding the associated rate of profit (Constant.EARNING_MAP). 
 
@@ -7,9 +7,9 @@ In addition, it provides four main services:
 - Debug log, saved in "log" folder on a daily basis;
 - Wrap-up email sent every day specifying the executed orders and the log file of the current day attached;
 - Methods for the construction of a Crypto Database (in "Data" folder);
-- Methods for Retrieving/Plotting of historical market data for Data Analysis.
+- Methods for Retrieving/Plotting  historical market data for Data Analysis.
 
-Regarding the Crypto Database, we encapsule the historical market data in JSON format, write a file .txt, and save it in the "Data" folder. Features (for each kline interval):
+Regarding the Crypto Database, we encapsulate the historical market data in JSON format, write a file .txt, and save it in the "Data" folder. Features (for each kline interval):
 - CloseTime
 - Low/High/Close Price;
 - Volume;
@@ -24,9 +24,9 @@ There are implemented three different trading strategies (written in utilities_b
 3) "strategy_2" =  "not strategy_crash   and  rsi_low < RSI_OVERSOLD  and  ema_diff > 0.02 and displacement_200 > 0.05 and displacement_50 > 0.03"
 		
    where  
-   a) "displacement_200" is the rate of return of Exponential Moving Average with 200 period (ema_200) with the respect to the current close price;
+   a) "displacement_200" is the rate of return of the Exponential Moving Average with 200 period (ema_200) with the respect to the current close price;
    
-   b) "displacement_50" is the rate of return of Exponential Moving Average with 50 period (ema_200) with the respect to the current close price;
+   b) "displacement_50" is the rate of return of the Exponential Moving Average with 50 period (ema_200) with the respect to the current close price;
    
    c) "ema_diff" is  (ema_200 - ema_50)/ema_50
    
@@ -34,7 +34,7 @@ There are implemented three different trading strategies (written in utilities_b
    
    e) the capital VARIABLES are setting constant variables specified in Constant.py.
 
-Possibility to run the bot in a Test mode, by TEST = True.
+Possibility to run the bot in a Test mode, with TEST = True.
 
 
 The Crypto Trading Bot uses:
