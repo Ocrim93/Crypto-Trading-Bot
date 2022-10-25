@@ -3,7 +3,7 @@ Crypto Trading Botto buy/sell cryptocurrencies on Binance.com that can run 24/7.
 
 In detail, if the conditions based on the chosen trading strategies are met, the running bot would execute a MARKET BUY ORDER on Binance and a SELL LIMIT ORDER would be filled regarding the associated rate of profit (Constant.EARNING_MAP). 
 
-In addition, it provides three main services:
+In addition, it provides four main services:
 - Debug log, saved in "log" folder on a daily basis;
 - Wrap-up email sent every day specifying the executed orders and the log file of the current day attached;
 - Methods for the construction of a Crypto Database (in "Data" folder);
