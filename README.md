@@ -1,14 +1,26 @@
 # Crypto-Trading-Bot
-Crypto Trading Bot to buy/sell cryptocurrencies on Binance.com that can run 24/7
+Crypto Trading Botto buy/sell cryptocurrencies on Binance.com that can run 24/7. In detail, if there are the conditions based on the chosen trading strategies, the running bot would execute a MARKET BUY ORDER on Binance and a SELL LIMIT ORDER wwould be filled regarding the associated rate of profit (Constant.EARNING_MAP). 
+
+There are implemented three different trading strategies (written in utilities_bot.bot_rsi() method ):
+1) "strategy_crash": "displacement_200 > 0.09"
+2) "strategy_1": "not strategy_crash   and  rsi_low < RSI_OVERSOLD  and  ema_diff < 0.008 and displacement_200 > 0.06 and displacement_50 > 0.04"
+3) "strategy_2" =  "not strategy_crash   and  rsi_low < RSI_OVERSOLD  and  ema_diff > 0.02 and displacement_200 > 0.05 and displacement_50 > 0.03"
+		
+   where  
+   a) "displacement_200" is the rate of return of Exponential Moving Average with 200 period (ema_200) with the respect to the current close price.
+   b) "rsi_low" is the 
+   all the capital VARIABLES are setting constant variables specified in Constant.py
+
 
 The Crypto Trading Bot uses:
 - Python 3.9.7
 - TA-Lib 0.4.19
 - Numpy 1.21.2
 - Pandas 1.3.2
-- Binance 1.0.12
 - Matplotlib 3.4.3
 - Websocket 1.2.3
+- Binance 1.0.12
+- Binance API
 
 
 
