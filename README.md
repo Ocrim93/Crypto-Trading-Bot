@@ -7,8 +7,16 @@ In addition, it provides four main services:
 - Debug log, saved in "log" folder on a daily basis;
 - Wrap-up email sent every day specifying the executed orders and the log file of the current day attached;
 - Methods for the construction of a Crypto Database (in "Data" folder);
-- Methods for Retrieving/Plotting  for Data Analysis.
+- Methods for Retrieving/Plotting of historical market data for Data Analysis.
 
+Regarding the Crypto Database, we encapsule the historical market data in JSON format, write a file .txt, and save it in the "Data" folder. Features (for each kline interval):
+- CloseTime
+- Low/High/Close Price;
+- Volume;
+- High/Low/Close Relative Strength Index (RSI);
+- Money Flow Index (MFI);
+- Exponential Moving Average (EMA) with periods 200, 100, 50, 25, 10.
+- Differences between different EMA and their rate of return respect the current close price. 
 
 There are implemented three different trading strategies (written in utilities_bot.bot_rsi() method ):
 1) "strategy_crash": "displacement_200 > 0.09"
