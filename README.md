@@ -8,9 +8,13 @@ There are implemented three different trading strategies (written in utilities_b
 		
    where  
    a) "displacement_200" is the rate of return of Exponential Moving Average with 200 period (ema_200) with the respect to the current close price;
+   
    b) "displacement_50" is the rate of return of Exponential Moving Average with 50 period (ema_200) with the respect to the current close price;
+   
    c) "ema_diff" is  (ema_200 - ema_50)/ema_50
+   
    d) "rsi_low" is the Relative Strength Index (RSI) of the low prices;
+   
    e) the capital VARIABLES are setting constant variables specified in Constant.py.
 
 
