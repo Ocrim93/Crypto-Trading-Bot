@@ -7,7 +7,7 @@ In addition, it provides the following main services:
 - Open Websocket connected through Binance API Management;
 - Debug log, saved in "log" folder on a daily basis;
 - Wrap-up email sent every day specifying the executed orders and the log file of the current day attached;
-- Methods for the construction and updating a Crypto Database (stored in  "Data" folder);
+- Methods for the construction and updating  Crypto Database (stored in  "Data" folder);
 - Methods for Retrieving/Plotting  historical market data for Data Analysis.
 
 Regarding the Crypto Database, we encapsulate the historical market data in JSON format, write a file .txt, and save it in the "Data" folder. Features (for each kline interval):
@@ -15,14 +15,16 @@ Regarding the Crypto Database, we encapsulate the historical market data in JSON
 - Low/High/Close Price;
 - Volume;
 
-The Data Analysis constits of splits the dataframe containing the historical market data in smaller dataframe. We highlight the minimum close prices in each shred dataframe and the values of specific Trading Indicators at the local minimum, such as:
+The Data Analysis consists of splitting the dataframe containing the historical market data into smaller dataframe. In each shred dataframe, we highlight the minimum close prices  and the values of specific Trading Indicators at the local minimum, such as:
 
 - High/Low/Close Relative Strength Index (RSI);
 - Money Flow Index (MFI);
 - Exponential Moving Average (EMA) with periods 200, 100, 50, 25, 10.
-- Differences between different EMA and their rate of return respect the current close price.
+- Differences between different EMAs and their rate of return respect the current close price.
 
-Then, everything is combinaed in a unique dataframe which is saved in "Analysis" folder. 
+Then, everything is combined in a unique dataframe which is saved in "Analysis" folder. 
+
+Regarding the plotting, it shows the close price graph and EMAs behaviour at the associated time interval. The plot is saved as .png file in "Photo" folder.
 
 There are implemented three different trading strategies (written in utilities_bot.bot_rsi() method ):
 1) "strategy_crash": "displacement_200 > 0.09"
