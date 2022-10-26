@@ -15,7 +15,7 @@ Regarding the Crypto Database, we encapsulate the historical market data in JSON
 - Low/High/Close Price;
 - Volume;
 
-#Data Analysis 
+# Data Analysis 
 
 The Data Analysis consists of splitting the dataframe containing the historical market data into smaller dataframe. In each shred dataframe, we highlight the minimum close prices  and the values of specific Trading Indicators at the local minimum, such as:
 
@@ -28,7 +28,7 @@ Then, everything is combined in a unique dataframe which is saved in "Analysis" 
 
 Regarding the plotting, it shows the close price graph and EMAs behaviour at the associated time interval. The plot is saved as .png file in "Photo" folder.
 
-#Trading Strategy Implemented
+# Trading Strategy Implemented
 
 There are implemented three different trading strategies (written in utilities_bot.bot_rsi() method ):
 1) "strategy_crash": "displacement_200 > 0.09"
