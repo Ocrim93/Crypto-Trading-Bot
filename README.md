@@ -15,6 +15,8 @@ Regarding the Crypto Database, we encapsulate the historical market data in JSON
 - Low/High/Close Price;
 - Volume;
 
+#Data Analysis 
+
 The Data Analysis consists of splitting the dataframe containing the historical market data into smaller dataframe. In each shred dataframe, we highlight the minimum close prices  and the values of specific Trading Indicators at the local minimum, such as:
 
 - High/Low/Close Relative Strength Index (RSI);
