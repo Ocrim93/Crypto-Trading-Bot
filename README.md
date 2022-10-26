@@ -1,7 +1,7 @@
 # Crypto-Trading-Bot
 Crypto Trading Bot to buy/sell cryptocurrencies on Binance.com which can run 24/7. Easy to set up with a customisable config.py file. 
 
-In detail, if the conditions based on the chosen trading strategies are met, the running bot would execute a MARKET BUY ORDER on Binance and a SELL LIMIT ORDER would be filled regarding the associated rate of profit (Constant.EARNING_MAP). 
+In detail, if the conditions based on the chosen trading strategies are met, the running bot would execute a MARKET BUY ORDER and a SELL LIMIT ORDER would be filled regarding the associated rate of profit (Constant.EARNING_MAP). 
 
 In addition, it provides the following main services:
 - Open Websocket connected through Binance API Management;
