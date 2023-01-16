@@ -12,8 +12,8 @@ In addition, it provides the following main services:
 
 Regarding the Crypto Database, we encapsulate the historical market data in JSON format, write a file .txt, and save it in the "Data" folder. Features (for each kline interval):
 - CloseTime
-- Low/High/Close Price;
-- Volume;
+- Low/High/Close Price
+- Volume
 
 # Data Analysis 
 
