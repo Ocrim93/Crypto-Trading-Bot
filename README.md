@@ -50,7 +50,7 @@ Possibility to run the bot in a Test mode, with TEST = True.
 
 The remove_file_log.py script deletes every log file in the "log" folder, execept for the log file of today.
 
-# Libraries versions 
+# Libraries used and their versions 
 The Crypto Trading Bot uses:
 - Python 3.9.7
 - TA-Lib 0.4.19
