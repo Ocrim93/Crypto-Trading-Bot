@@ -14,6 +14,8 @@ import asyncio
 import pprint
 import requests
 
+#%%%%%%%%%%%%%%%%%%%% Method to send a daily wrap-up email %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
 def send_summary_email(summary_book):
 	commission_fee = 999
 	try:
@@ -44,7 +46,8 @@ def send_summary_email(summary_book):
 			log('Sending email daily wrap-up', OUTCOME_OK)
 		else:
 			log('Sending email daily wrap-up', OUTCOME_KO)
-		
+
+#%%%%%%%%%%%%%%%%%%%% Method to send a daily wrap-up email %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 
 def log(message,outcome):
 	dt = datetime.datetime.now()
@@ -58,6 +61,9 @@ def log(message,outcome):
 	f.write(str(dt) +'   '+ message+ ' : ' + outcome+'\n')
 	f.close()
 
+#%%%%%%%%%%%%%%%%%%%% Method to update your crypto Database  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Check the Data folder and update the historical data by updating the file in each crypto-coin folders
+
 def updateDatabase():
 	list_tickers = os.listdir(PATH+'Data/')
 	list_tickers.remove('.DS_Store')
@@ -65,12 +71,12 @@ def updateDatabase():
 
 def retrieveDataYear(list_tickers,numberOfYear = 1,interval = []):
 	if interval == []:
-		retrieveData(list_tickers,howLong = numberOfYear*365,interval = INTERVAL, writeOnFileTrigger = True)
-		retrieveData(list_tickers,howLong = numberOfYear*365,interval = ['1h','2h','4h','6h','12h','1d'], writeOnFileTrigger = True)
+		retrieveData(list_tickers,howLong = numberOfYear*365,interval = INTERVAL1, writeOnFileTrigger = True)
+		retrieveData(list_tickers,howLong = numberOfYear*365,interval = INTERVAL2, writeOnFileTrigger = True)
 	else:
 		retrieveData(list_tickers,howLong = numberOfYear*365,interval = interval, writeOnFileTrigger = True)	
 
-def retrieveDataUpdating(list_tickers,interval = INTERVAL+['1h','2h','4h','6h','12h','1d']):
+def retrieveDataUpdating(list_tickers,interval = INTERVAL1+INTERVAL2):
 
 	for ticker in list_tickers:
 		dir_path = PATH+'Data/'+ticker+'/'
@@ -121,10 +127,10 @@ def getHistoricalData(symbol,interval,untilThisDate,howLong=30):
 
 	sinceThisDate_timestamp = datetime.datetime.timestamp(sinceThisDate)
 	untilThisDate_timestamp = datetime.datetime.timestamp(untilThisDate)
-	#info = client.get_all_tickers()
+	
 	
 
-	# Execute the query from binance - timestamps must be converted to strings !
+	# Execute the query from Binance - timestamps must be converted to strings !
 	try:
 		client = Client(config.API_KEY,config.API_SECRET,tld= 'com')
 		candle = client.get_historical_klines(symbol,interval,str(sinceThisDate),str(untilThisDate))
@@ -142,10 +148,6 @@ def getHistoricalData(symbol,interval,untilThisDate,howLong=30):
 	
 	df = df[df.closeTime >= sinceThisDate_timestamp]
 	df = df[df.closeTime < untilThisDate_timestamp]
-	
-	#df.dateTime = pd.to_datetime(df.dateTime, unit='ms')
-	#df.closeTime = df.closeTime.apply(lambda q :  datetime.datetime.fromtimestamp(q/1000))
-	#df.set_index('closeTime', inplace=True)
 	
 	df = df.drop(['dateTime', 'quoteAssetVolume', 'numberOfTrades', 'takerBuyBaseVol','takerBuyQuoteVol', 'ignore'], axis=1)
 	
