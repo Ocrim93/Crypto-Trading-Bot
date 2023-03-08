@@ -1,10 +1,21 @@
+'''
+In case you have more bots which run simultaneously. 
+
+It is a script to prompt erasing of the past log files
+
+'''
+
+
 import os 
 import datetime
 
+# Number of bots 
 number_bots = 4
+
+# Not remove the log file of today
 not_remove = datetime.datetime.now().strftime('%d-%m-%Y')+'.txt'
 
-main_path = '/home/pi/Desktop/Binance/Bot/bot'
+main_path = 'PATH TO GENERAL BOT FODLER /bot'
 
 files ={}
 
