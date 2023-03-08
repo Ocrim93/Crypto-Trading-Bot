@@ -9,9 +9,6 @@ import asyncio
 import utilities
 from email.mime.base import MIMEBase
 from email import encoders
-import config
-
-# Send the wrap-up email with log file  attached 
 
 def sendNotification(subject,text):
 
@@ -20,18 +17,19 @@ def sendNotification(subject,text):
 
 	#https://docs.python.org/3/library/email.examples.html
 	smtp_server = "smtp.mail.yahoo.com"
-	
+	#smtp_server = 'smtp.gmail.com'
 
-	sender_email = config.SENDER_EMAIL
-	password = config.PASSWORD
+	sender_email = "notice.kraken1@yahoo.com"
 	
-	receiver = config.RECEIVER_EMAIL
+	receiver = 'notice.kraken@yahoo.com'
+	#receiver ='mircodigioia@yahoo.it'
 	port = 587
-	
+	password = "suzkgicqzmiygnzx"
+	#password = "xtslkttbktdlfshe"
 	
 	#context = ssl.create_default_context()
 
-	#Setting up the email
+	
 	msg = MIMEMultipart('Empty')
 	msg['From'] = sender_email
 	msg['To'] = receiver
@@ -40,7 +38,6 @@ def sendNotification(subject,text):
 	msg.attach(MIMEText(body,'plain'))          
 	#server = smtplib.SMTP_SSL(smtp_server, port, context=context)
 
-	# Attach the log file
 	part = MIMEBase('application', "octet-stream")
 	part.set_payload(open("log/"+yesterday.strftime('%d-%m-%Y') +".txt", "rb").read())
 	encoders.encode_base64(part)
