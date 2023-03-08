@@ -8,7 +8,7 @@ import traceback,sys
 from websocket._exceptions import *
 import Constant
 
-# Daily initialization method and sending wrap-up email 
+
 
 def daily_initialization(ws):
 	global price, summary_book,change_day_alert
@@ -27,11 +27,11 @@ def daily_initialization(ws):
 		utilities.log(str(e), OUTCOME_KO)
 		utilities.log('Detail : \n',str(traceback.print_exc()))
 
-# Open a websocket and dealing with future exceptions
+
 
 def websocket_bot():
 	try:
-		websocket.enableTrace(True)
+		#websocket.enableTrace(True)
 		ws = websocket.WebSocketApp(SOCKET, on_open=on_open, on_close=on_close, on_message=on_message, 
 											on_error = on_error, on_pong = on_pong,on_ping=on_ping)
 		ws.run_forever()
@@ -110,41 +110,31 @@ def on_message(ws,message):
 	current_price = {'low': 0.0, 'high':0.0,'close':0.0}
 	
 	try:
-		#Retrieve live data by websocket running request
-		
 		json_message= json.loads(message)
 		pprint.pprint(json_message)
 
 		candle = json_message['k']
 
-		#Formatting the json response from the websocket
 		is_candle_closed = candle['x']
+
 		current_price['close'] = float(candle['c'])
 		current_price['low'] = float(candle['l'])
 		current_price['high'] = float(candle['h'])
 		current_price['volume'] = float(candle['v'])
+
 		close_Time = candle['T']
 
-		#Formatting close date 
+
 		close_date = datetime.datetime.fromtimestamp(close_Time/1000)
-		
-		# Check if it is the next day 
 		if change_day_alert :
 			change_day = close_date.replace(minute=59,hour=23,second=59,microsecond=999999)
 			utilities.log('set change_day', str(change_day))
 			change_day_alert = False
-
-		# If we reach the next day, we need to turn off and turn on the websocket and initialize 	
 		if( close_date > change_day ):
 			daily_initialization(ws)
 		
-		#Check if the market buy order is fulfilled 
-		#If yes, Release a Limit Buy Order to take profit from trading strategy
-		
 		if (not in_position and current_price['close'] >= price_to_sell):
 			time.sleep(3)
-
-			# Check if LIMIT SELL ORDER has been executed, True: Yes, False: No 
 			order = utilities_bot.checkExecutionOrder(orderId)
 			if order != {} :
 				in_position = True
@@ -158,12 +148,8 @@ def on_message(ws,message):
 			for key in price.keys():
 				price[key] = np.append(price[key],current_price[key])
 
-			#After the candle is closed we are going to apply our trading strategy my calling bot_rsi method in utilities_bot library 
-			# If there are the conditions, a BUY MARKET ORDER would be executed and a SELL LIMIT ORDER would be filled
 			
 			bot_rsi_output = utilities_bot.bot_rsi(price, in_position,orderId,price_to_sell,TRADE_QUANTITY_QUOTE,TRADE_QUANTITY_BASE,summary_book)
-			
-			# If something happens, we have to update everything 
 			if in_position != bot_rsi_output['in_position']:
 				in_position = bot_rsi_output['in_position']
 				TRADE_QUANTITY_QUOTE  = bot_rsi_output['TRADE_QUANTITY_QUOTE']
@@ -171,8 +157,7 @@ def on_message(ws,message):
 				summary_book  = bot_rsi_output['summary_book']
 				price_to_sell = bot_rsi_output['price_to_sell']
 				orderId = bot_rsi_output['orderId_to_sell']
-			
-			# In case we reach the needed profit, we shut the websocket and send the wrap-up email 	
+				
 			if (TRADE_QUANTITY_QUOTE > STARTING_TRADE_QUANTITY_QUOTE*TOTAL_EARNING):
 				ws.close()
 				utilities.send_summary_email(summary_book)
@@ -196,17 +181,13 @@ if __name__ == "__main__":
 	in_position = IN_POSITION
 	change_day_alert = True
 	
-	# Retrieve the correct Tick and Step Value 
 	utilities.setTICKandSTEPvalue()
 
 	symbol  = TRADE_SYMBOL.lower()
 	stream = symbol+'@kline_'+PERIOD
 
-	#URL for the websocket
-
 	SOCKET = "wss://stream.binance.com:9443/ws/"+ stream
 	summary_book = []
 
-	# Retrieve the past 15 days historical data to start the analysis
 	price = utilities.retrieveData([TRADE_SYMBOL],interval=[PERIOD],howLong=15)
 	websocket_bot()

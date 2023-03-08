@@ -12,10 +12,9 @@ from talib import stream
 from binance.helpers import round_step_size
 import datetime
 import traceback,sys
+from scipy.optimize import curve_fit
 import math
 
-
-# Method to format and Fill/Execute BUY/SELL ORDERS
 def market_order(bot_map,TEST):
 
 	market_order = bot_map
@@ -32,13 +31,10 @@ def market_order(bot_map,TEST):
 			message_log = 'Error '
 			order_buy = {}
 			
-			# Make a connection with a Binance Account through API
+
 			client = Client(config.API_KEY,config.API_SECRET,tld= 'com')
-			
-			# Execute BUY MARKET ORDER
 			order_buy = client.order_market_buy( symbol= TRADE_SYMBOL, quoteOrderQty= utilities.getPrecision(bot_map['TRADE_QUANTITY_QUOTE'],STEP_QUOTE))
-			
-			# Check the status of the BUY MARKET ORDER and retrieve the information 
+				
 			if(order_buy['status'] !='FILLED'):
 				raise Exception('MAKER ORDER NOT FILLED')
 			else:
@@ -51,7 +47,6 @@ def market_order(bot_map,TEST):
 				TRADE_QUANTITY_QUOTE = bot_map['TRADE_QUANTITY_QUOTE'] - float(order['cummulativeQuoteQty'])
 				price_to_sell = str(round_step_size( price_bought*(Constant.EARNING), Constant.TICK_SIZE))
 
-				# Create LIMIT SELL ORDER
 				order_to_sell = client.create_order(
     				symbol=TRADE_SYMBOL,
    					side=SIDE_SELL,
@@ -92,7 +87,7 @@ def market_order(bot_map,TEST):
 
 	return market_order
 
-#Method only in a TEST mode	
+	
 
 def market_order_test(bot_map):
 
@@ -109,11 +104,9 @@ def market_order_test(bot_map):
 	return bot_map
 
 def bot_rsi(price, in_position,orderId,price_to_sell,TRADE_QUANTITY_QUOTE,TRADE_QUANTITY_BASE,summary_book,rsi_period = RSI_LENGTH,TEST = False):
-	
 	order_succeeded = {}
 	length = len(price['close'])
 
-	#Construction the order map
 	order_succeeded['in_position'] = in_position
 	order_succeeded['price_to_sell'] = price_to_sell
 	order_succeeded['TRADE_QUANTITY_QUOTE'] = TRADE_QUANTITY_QUOTE
@@ -121,7 +114,6 @@ def bot_rsi(price, in_position,orderId,price_to_sell,TRADE_QUANTITY_QUOTE,TRADE_
 	order_succeeded['summary_book'] = summary_book
 	order_succeeded['orderId_to_sell'] = orderId
 	
-	# Needed Check, otherwise most of trading indicators are nan
 	if length > EMA_PERIOD:
 		
 		close_price = price['close'][-1]
@@ -129,75 +121,92 @@ def bot_rsi(price, in_position,orderId,price_to_sell,TRADE_QUANTITY_QUOTE,TRADE_
 		if TEST:
 			order_succeeded['close_price'] = close_price
 
-		#Compute trading indicators
-
-		# Compute RSI,MFI, STOCH
-		rsi_high = talib.RSI(price['high'], rsi_period)[-1]
-		rsi_low = talib.RSI(price['low'], rsi_period)[-1]
-		rsi_close = talib.RSI(price['close'], rsi_period)[-1]
 		
+		rsi_high = talib.RSI(price['high'], rsi_period)
+		rsi_low = talib.RSI(price['low'], rsi_period)
+		rsi_close = talib.RSI(price['close'], rsi_period)
 		mfi = talib.MFI(price['high'],price['low'],price['close'],price['volume'], timeperiod=rsi_period)[-1]
+		rsi_low = rsi_low[-1]
+		rsi_close = rsi_close[-1]
+		
 		
 		fastk,fastd = stream.STOCH(price['high'],price['low'],price['close'], rsi_period,3, 0, 3, 0)
+		#fastk,fastd = stream.STOCHF(price['high'],price['low'],price['close'], rsi_period,3, 0)
+		#rsi_k,rsi_d = stream.STOCHRSI(rsi,timeperiod=rsi_period)
+
 		fastj = D_WEIGHT*fastd - K_WEIGHT*fastk
-		
-		fastk,fastd = stream.STOCHF(price['high'],price['low'],price['close'], rsi_period,3, 0)
-		rsi_k,rsi_d = stream.STOCHRSI(rsi,timeperiod=rsi_period)
-		
-		#Compute EMA
 		
 		ema_200 = talib.EMA(price['close'],timeperiod=200)[-1]
 		ema_25 = talib.EMA(price['close'],timeperiod=25)[-1]
 		ema_50 = talib.EMA(price['close'],timeperiod=50)[-1]
 		
-		#Manipulation of trading indicators
-
 		displacement_200  = (ema_200 - price['close'][-1])/price['close'][-1]
 		displacement_25  = (ema_25 - price['close'][-1])/price['close'][-1]
 		displacement_50  = (ema_50 - price['close'][-1])/price['close'][-1]
-		ema_diff =  (ema_200 - ema_50)/ema_50
 		
+		ema_diff =  (ema_200 - ema_50)/ema_50
 		displ_sequence = displacement_200 > 0.06 and displacement_50 > 0.04 and displacement_25 > 0.03
 		rsi_sequence = rsi_close < rsi_low
-		
-		# Write in the log the value of the main trading indicators in order to analyse later on
+		#rsi_stoch = (last_rsi*2  + fastd*3)/5.0
+		#parameters = 0
+		#covariance = 0
+		#price_parabolic =0 
+		# Parabola
+		#if len(ema_7) >= 100000140:
+		#	parameters, covariance = curve_fit(parabola, np.array(range(0,140),dtype='f8'), ema_7[len(ema_7)-140:len(ema_7)])
+		#	price_parabolic = -parameters[1]/(2.0*parameters[0])
+
 		if not TEST:
 			utilities.log('close_price',str(close_price))
 			utilities.log('rsi ',str(last_rsi)+ ' '+str(fastd)+ ' '+str(fastk)+ ' '+str(fastj)+ ' '+str(rsi_stoch))	
 
-		#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TRADING STRATEGY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		
-		# Implementation of 3 different kind of Trading Strategies 
-		
+			
 		strategy_crash = displacement_200 > 0.09
 		strategy_1 =  not strategy_crash   and  rsi_low < RSI_OVERSOLD  and  ema_diff < 0.008 and displacement_200 > 0.06 and displacement_50 > 0.04
 		strategy_2 =  not strategy_crash   and  rsi_low < RSI_OVERSOLD  and  ema_diff > 0.02 and displacement_200 > 0.05 and displacement_50 > 0.03
 		
-		# Chech if there are the conditions for a specific trading strategy
+				#if Constant.FIRST_BUYING:
+		#	strategy_1 = rsi_low < RSI_OVERSOLD  and  displacement_50 > 0.04 and ema_sequence
 
+		#strategy_2 = displacement_100 >= 0.035 and price['clv'][-1] < -0.25
+		#strategy_2 = rsi_low < RSI_OVERSOLD  and   displacement_200 > 0.04 
+		
+		
 		if  (strategy_1 or strategy_crash or strategy_2) and  in_position:
 			if Constant.MINIMUM_AMOUNT == 0.0 :
 				Constant.MINIMUM_AMOUNT = utilities.getPrecision(TRADE_QUANTITY_QUOTE/close_price,Constant.STEP_BASE)
-				#Constant.FIRST_BUYING = False
+				Constant.FIRST_BUYING = False
 				check_right_amount_to_sell = True
 			else:
 				check_right_amount_to_sell = (Constant.MINIMUM_AMOUNT < utilities.getPrecision(TRADE_QUANTITY_QUOTE/close_price,Constant.STEP_BASE))
-			
-			# Specific rate of profit depending on the trading strategy
+				
 			if check_right_amount_to_sell :
 				if strategy_crash:
 					Constant.EARNING = EARNING_MAP['big']
+					print('--------------------------------------- crash')
 				else:
 					Constant.EARNING = EARNING_MAP['short']
-				
-				# Execute a BUY MARKET ORDER and fill a SELL LIMIT ORDER
+					if strategy_1:
+						print('--------------------------------------- 1')
+					else:
+						print('--------------------------------------- 2')
+						
+
+				print('mfi',mfi)
+				print('rsi_low',rsi_low)
+			
+				print('rsi_close',rsi_close)
+
+				print('displacement_50',displacement_50)
+				print('displacement_200',displacement_200)
+				print(displacement_200 - displacement_50)
 				order_succeeded = market_order(order_succeeded,TEST)
 				if order_succeeded['outcome']:
 					order_succeeded['in_position'] = False
 
 	return	order_succeeded			
 			
-# Formatting Method to update the summary book needed for taking trace of the BUY/SELL ORDERS 
+
 
 def formatting_page(order,TRADE_QUANTITY_BASE,TRADE_QUANTITY_QUOTE):
 
