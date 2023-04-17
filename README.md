@@ -5,7 +5,7 @@ In detail, if the conditions based on the chosen trading strategies are met, the
 
 In addition, it provides the following main services:
 - Open Websocket connected through Binance API Management;
-- Debug log saved in "log" folder on a daily basis;
+- Debug log, saved in "log" folder on a daily basis;
 - Wrap-up email sent every day specifying the executed orders and the log file of the current day attached;
 - Methods for the construction and updating  Crypto Database (stored in  "Data" folder);
 - Methods for Retrieving/Plotting  historical market data for Data Analysis.
