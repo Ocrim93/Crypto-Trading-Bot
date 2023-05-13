@@ -3,7 +3,8 @@ import numpy as np
 import  time
 import datetime
 from Constant import *
-import utilities,utilities_bot
+import Utilities.utilitiesFunction as utilities
+import Utilities.utilities_bot as utilities_bot
 import traceback,sys
 from websocket._exceptions import *
 import Constant
@@ -184,7 +185,7 @@ def on_message(ws,message):
 		utilities.log('Detail : \n',str(traceback.extract_tb(exc_tb)))
 
 
-if __name__ == "__main__":
+def run():
 
 	TRADE_QUANTITY_BASE = STARTING_BASE
 	TRADE_QUANTITY_QUOTE = STARTING_QUOTE

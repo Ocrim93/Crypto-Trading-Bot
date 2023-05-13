@@ -1,0 +1,6 @@
+python-binance
+pandas
+matplotlib
+websocket
+numpy
+plotly

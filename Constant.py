@@ -41,8 +41,8 @@ OUTCOME_OK = 'OK'
 OUTCOME_KO = '----------KO-------------- '
 
 # ---------------------------------------Retrieving/Utilities/Plotting Configuration-----------------------------------
-PATH = 'PATH to a folder that contains specific folder names: Data, log, Photo, Analysis '
-INTERVAL = ['1m','3m','5m','15m','30m']
+PATH = '/Users/mirco/Desktop/101/Binance/Crypto-Trading-Bot/'
+INTERVAL1 = ['1m','3m','5m','15m','30m']
 INTERVAL2 = ['1h','2h','4h','6h','12h','1d']
 RSI_PERIOD = [6,12,14,24]
 EMA_LIST = list(['ema_200','ema_100','ema_50','ema_25','ema_10'])
